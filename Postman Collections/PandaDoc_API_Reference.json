@@ -696,6 +696,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "9c8e7a02-2ae9-49e9-b87f-b816ff3a38ea",
+      "name": "Just another folder",
+      "description": "",
+      "item": []
     }
   ]
 }
