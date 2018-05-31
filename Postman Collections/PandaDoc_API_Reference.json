@@ -1,0 +1,701 @@
+{
+  "info": {
+    "_postman_id": "3307a3f5-6adb-413b-8725-acca239ab155",
+    "name": "PandaDoc API Reference",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "cae93563-0239-4b9a-b79e-d224a75bf268",
+      "name": "Authentication",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "d0a01c18-7ee5-463e-be6a-6a7876f0e8fc",
+          "name": "Get Access Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://app.pandadoc.com/oauth2/authorize?client_id={{client_id}}&redirect_uri={{redirect_uri}}&scope=read+write&response_type=code",
+              "protocol": "https",
+              "host": [
+                "app",
+                "pandadoc",
+                "com"
+              ],
+              "path": [
+                "oauth2",
+                "authorize"
+              ],
+              "query": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "{{redirect_uri}}"
+                },
+                {
+                  "key": "scope",
+                  "value": "read+write"
+                },
+                {
+                  "key": "response_type",
+                  "value": "code"
+                }
+              ]
+            },
+            "description": "Provide values to variables: client_id, redirect_url ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nTest this link in a web browser.\n\nYou can get the URL by going to \"Code\" - \"cURL\".\n\nFor details go to [https://developers.pandadoc.com/v1/reference#authorize-a-user](https://developers.pandadoc.com/v1/reference#authorize-a-user).\n\nFor details of authentication process go to [https://developers.pandadoc.com/v1/reference#authentication-process](https://developers.pandadoc.com/v1/reference#authentication-process)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a337a732-091a-4366-93b3-1dfca101fd5d",
+          "name": "Create Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+                  "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "code",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "read+write",
+                  "type": "text"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "{{redirect_uri}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "https://api.pandadoc.com/oauth2/access_token",
+            "description": "Provide values to variables: client_id, client_secret ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nProvide value for one-off variable code.\n\nFor details go to [https://developers.pandadoc.com/v1/reference#create-an-access_token](https://developers.pandadoc.com/v1/reference#create-an-access_token).\n\nFor details of authentication process go to [https://developers.pandadoc.com/v1/reference#authentication-process](https://developers.pandadoc.com/v1/reference#authentication-process)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d61fb86e-7e93-4ad5-a826-9fe8e2f4b012",
+          "name": "Refresh Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+                  "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "refresh_token",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "read+write",
+                  "type": "text"
+                },
+                {
+                  "key": "refresh_token",
+                  "value": "{{refresh_token}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "https://api.pandadoc.com/oauth2/access_token",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#refresh-access_token](https://developers.pandadoc.com/v1/reference#refresh-access_token).\n\nFor details of authentication process go to [https://developers.pandadoc.com/v1/reference#authentication-process](https://developers.pandadoc.com/v1/reference#authentication-process)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "e8248a2d-ae07-4955-932f-87df973184e2",
+      "name": "Documents API",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "dbc5c573-6cad-46f4-b382-d8a5772a66d7",
+          "name": "List Documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#list-documents](https://developers.pandadoc.com/v1/reference#list-documents)."
+          },
+          "response": [
+            {
+              "id": "e9d65437-3600-4a74-af30-30e78e96ddcb",
+              "name": "Empty Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eced9b6e81f1171766a4726565b1e53414c9fa97"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json;charset=UTF-8",
+                    "description": "The mime type of this content"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "https://api.pandadoc.com/public/v1/templates"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "javascript",
+              "header": [
+                {
+                  "key": "Allow",
+                  "value": "GET, DELETE, HEAD, OPTIONS",
+                  "name": "Allow",
+                  "description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache",
+                  "name": "Cache-Control",
+                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": "Options that are desired for the connection"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip",
+                  "name": "Content-Encoding",
+                  "description": "The type of encoding used on the data."
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 22 Aug 2016 17:01:13 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "Expires",
+                  "value": "Mon, 22 Aug 2016 17:01:12 GMT",
+                  "name": "Expires",
+                  "description": "Gives the date/time after which the response is considered stale"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache",
+                  "name": "Pragma",
+                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                },
+                {
+                  "key": "Server",
+                  "value": "nginx/1.4.6 (Ubuntu)",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked",
+                  "name": "Transfer-Encoding",
+                  "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\"count\": 0, \"next\": null, \"previous\": null, \"results\": []}"
+            }
+          ]
+        },
+        {
+          "_postman_id": "1c36d235-bb1e-487a-b3ea-45dae861b18f",
+          "name": "Create Document from PandaDoc Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"document_id\", jsonData.uuid);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n    \"name\": \"Sample Document from PandaDoc Template\",\n    \"template_uuid\": \"{{template_id}}\",\n    \"recipients\": [  \n        {  \n            \"email\": \"jane@example.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"role\": \"user\"\n        }\n    ],\n    \"tokens\": [  \n        {  \n            \"name\": \"Favorite.Pet\",\n            \"value\": \"Panda\"\n        }\n    ],\n    \"fields\": {  \n        \"Favorite.Color\": {  \n            \"value\": \"PandaDoc green\"\n        },\n        \"Like\": {\n        \t\"value\": true\n        }\n    },\n    \"metadata\":{  \n        \"opp_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"pricing_tables\": [  \n        {  \n            \"name\": \"PricingTable1\",\n            \"options\": {  \n                \"currency\": \"USD\",\n                \"discount\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Global discount\",\n                    \"value\": 2\n                }\n            },\n            \"sections\": [  \n                {  \n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [  \n                        {  \n                            \"options\": {  \n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\":{  \n                                \"name\": \"Toy Panda\",\n                                \"description\": \"Fluffy!\",\n                                \"price\": 10,\n                                \"qty\": 3,\n                                \"discount\": {  \n                                    \"value\": 10,\n                                    \"type\": \"percent\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents",
+            "description": "Provide value to variable: template_id ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to [https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template](https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template).\n\nFor details of document creation in general go to [https://developers.pandadoc.com/v1/reference#new-document](https://developers.pandadoc.com/v1/reference#new-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0ea8f221-db84-44c3-a6b0-7006444370b8",
+          "name": "Create Document from PDF (Form Fields)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"document_id\", jsonData.uuid);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "value": null,
+                  "type": "file"
+                },
+                {
+                  "key": "data",
+                  "value": "{  \n    \"name\": \"Sample Document from PDF with Form Fields\",\n    \"recipients\": [  \n        {  \n            \"email\": \"jane@example.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"role\": \"user\"\n        }\n    ],\n    \"fields\": {  \n        \"userName\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"homeAddress\": {\n            \"value\": \"\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        },\n        \"signature\": {  \n            \"value\": \"\",\n            \"role\": \"user\"\n        }\n    },\n    \"parse_form_fields\": true\n}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents",
+            "description": "For details and the sample PDF go to [https://developers.pandadoc.com/v1/reference#section-pdf-form-fields](https://developers.pandadoc.com/v1/reference#section-pdf-form-fields).\n\nFor details about document creation from PDF go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of document creation in general go to [https://developers.pandadoc.com/v1/reference#new-document](https://developers.pandadoc.com/v1/reference#new-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4f9af0a0-f610-41e4-9250-26b49383f80f",
+          "name": "Create Document from PDF (Field Tags)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"document_id\", jsonData.uuid);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "value": null,
+                  "type": "file"
+                },
+                {
+                  "key": "data",
+                  "value": "{  \n    \"name\": \"Sample Document from PDF with Field Tags\",\n    \"recipients\": [  \n        {  \n            \"email\": \"jane@example.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"role\": \"user\"\n        }\n    ],\n    \"fields\": {  \n        \"name\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        }\n    },\n    \"metadata\": {\n        \"salesforce.opportunity_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"parse_form_fields\": false\n}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents",
+            "description": "For details and the sample PDF go to [https://developers.pandadoc.com/v1/reference#section-pdf-field-tags](https://developers.pandadoc.com/v1/reference#section-pdf-field-tags).\n\nFor details about document creation from PDF go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of document creation in general go to [https://developers.pandadoc.com/v1/reference#new-document](https://developers.pandadoc.com/v1/reference#new-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f020a527-9292-49a2-ac90-43fd852a7dd7",
+          "name": "Document Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents/{{document_id}}",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#document-status](https://developers.pandadoc.com/v1/reference#document-status)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "aa82e37b-847e-45cf-87d4-e3964e4845f2",
+          "name": "Document Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/details",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#document-details](https://developers.pandadoc.com/v1/reference#document-details)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e257a5ab-8344-4a7a-bc44-80cdb70fc9be",
+          "name": "Send Document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"Hello! This document was sent from the PandaDoc API.\",\n    \"silent\": false\n}"
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/send",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "33f928a5-0aa8-4d2d-93e2-392fbb0735cb",
+          "name": "Share Document (Session ID)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"session_id\", jsonData.id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"recipient\": \"jane@example.com\",\n    \"lifetime\": 900\n}"
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/session",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#link-to-a-document](https://developers.pandadoc.com/v1/reference#link-to-a-document).\n\nFor details of document sharing go to [https://developers.pandadoc.com/v1/reference#share-document](https://developers.pandadoc.com/v1/reference#share-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5704007a-2bf1-4026-856f-bf06cc9d08a5",
+          "name": "Test sharable link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://app.pandadoc.com/s/{{session_id}}",
+            "description": "Test this link in a web browser.\n\nYou can get the URL by going to \"Code\" - \"cURL\".\n\nFor details go to [https://developers.pandadoc.com/v1/reference#link-to-a-document](https://developers.pandadoc.com/v1/reference#link-to-a-document)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8099012d-3220-4fbd-a8d0-638d6e14bda1",
+          "name": "Download Document",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/download",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#download-document](https://developers.pandadoc.com/v1/reference#download-document)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "97a9c2a9-b46d-4357-90d0-fb67ae6b2942",
+      "name": "Templates API",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "e49ae660-9ba4-4b01-aabb-ae12f6b3a4ab",
+          "name": "List Templates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/templates",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#list-templates](https://developers.pandadoc.com/v1/reference#list-templates)."
+          },
+          "response": [
+            {
+              "id": "01615fa3-18cd-4775-9fec-675d742094cc",
+              "name": "Empty Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eced9b6e81f1171766a4726565b1e53414c9fa97"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json;charset=UTF-8",
+                    "description": "The mime type of this content"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "https://api.pandadoc.com/public/v1/templates"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "javascript",
+              "header": [
+                {
+                  "key": "Allow",
+                  "value": "GET, DELETE, HEAD, OPTIONS",
+                  "name": "Allow",
+                  "description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache",
+                  "name": "Cache-Control",
+                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": "Options that are desired for the connection"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip",
+                  "name": "Content-Encoding",
+                  "description": "The type of encoding used on the data."
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 22 Aug 2016 17:01:13 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "Expires",
+                  "value": "Mon, 22 Aug 2016 17:01:12 GMT",
+                  "name": "Expires",
+                  "description": "Gives the date/time after which the response is considered stale"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache",
+                  "name": "Pragma",
+                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                },
+                {
+                  "key": "Server",
+                  "value": "nginx/1.4.6 (Ubuntu)",
+                  "name": "Server",
+                  "description": "A name for the server"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked",
+                  "name": "Transfer-Encoding",
+                  "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\"count\": 0, \"next\": null, \"previous\": null, \"results\": []}"
+            }
+          ]
+        },
+        {
+          "_postman_id": "0308bd2f-c647-4eee-9252-0616ab1800c8",
+          "name": "Template Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "https://api.pandadoc.com/public/v1/templates/{{template_id}}/details",
+            "description": "For details go to [https://developers.pandadoc.com/v1/reference#template-details](https://developers.pandadoc.com/v1/reference#template-details)."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
