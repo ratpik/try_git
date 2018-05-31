@@ -283,6 +283,281 @@
           "body": "{\n   \"destination_addresses\" : [ \"Zoo Road, Bengaluru, Karnataka 560083, India\" ],\n   \"origin_addresses\" : [\n      \"Kadiranna Palya Circle, Kadiranapalya, Sarvagnanagar, Bengaluru, Karnataka 560008, India\"\n   ],\n   \"rows\" : [\n      {\n         \"elements\" : [\n            {\n               \"distance\" : {\n                  \"text\" : \"25.0 km\",\n                  \"value\" : 25000\n               },\n               \"duration\" : {\n                  \"text\" : \"1 hour 13 mins\",\n                  \"value\" : 4396\n               },\n               \"duration_in_traffic\" : {\n                  \"text\" : \"1 hour 43 mins\",\n                  \"value\" : 6163\n               },\n               \"status\" : \"OK\"\n            }\n         ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"
         }
       ]
+    },
+    {
+      "_postman_id": "21a948c6-6a08-4281-95fa-bdc45d0634dd",
+      "name": "From Postman Office to the Butterfly Park Copy",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "https://maps.googleapis.com/maps/api/distancematrix/json?key={{API_KEY}}&origins={{POSTMAN}}&destinations={{BUTTERFLY_PARK}}&mode=driving&units=metric&departure_time=now&traffic_model=pessimistic",
+          "protocol": "https",
+          "host": [
+            "maps",
+            "googleapis",
+            "com"
+          ],
+          "path": [
+            "maps",
+            "api",
+            "distancematrix",
+            "json"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": "{{API_KEY}}",
+              "equals": true
+            },
+            {
+              "key": "origins",
+              "value": "{{POSTMAN}}",
+              "equals": true
+            },
+            {
+              "key": "destinations",
+              "value": "{{BUTTERFLY_PARK}}",
+              "equals": true
+            },
+            {
+              "key": "mode",
+              "value": "driving",
+              "equals": true
+            },
+            {
+              "key": "units",
+              "value": "metric",
+              "equals": true
+            },
+            {
+              "key": "departure_time",
+              "value": "now",
+              "equals": true
+            },
+            {
+              "key": "traffic_model",
+              "value": "pessimistic",
+              "equals": true
+            }
+          ]
+        },
+        "description": "Gets the time to drive in traffic from the Postman office in Indiranagar to the Butterfly Park at Bannerghatta National Park "
+      },
+      "response": [
+        {
+          "id": "cd6fa337-b871-489f-ac75-217daf47627d",
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://maps.googleapis.com/maps/api/distancematrix/json?key={{API_KEY}}&origins={{POSTMAN}}&destinations={{BUTTERFLY_PARK}}&mode=driving&units=metric&departure_time=now&traffic_model=pessimistic",
+              "protocol": "https",
+              "host": [
+                "maps",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "maps",
+                "api",
+                "distancematrix",
+                "json"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{API_KEY}}",
+                  "equals": true
+                },
+                {
+                  "key": "origins",
+                  "value": "{{POSTMAN}}",
+                  "equals": true
+                },
+                {
+                  "key": "destinations",
+                  "value": "{{BUTTERFLY_PARK}}",
+                  "equals": true
+                },
+                {
+                  "key": "mode",
+                  "value": "driving",
+                  "equals": true
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "equals": true
+                },
+                {
+                  "key": "departure_time",
+                  "value": "now",
+                  "equals": true
+                },
+                {
+                  "key": "traffic_model",
+                  "value": "pessimistic",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [
+            {
+              "key": "content-encoding",
+              "value": "deflate",
+              "description": "",
+              "type": "text",
+              "name": "content-encoding"
+            }
+          ],
+          "cookie": [],
+          "responseTime": null,
+          "body": "{\"status\" : 200}"
+        },
+        {
+          "id": "cf9189e6-b215-4fef-ac70-449426672640",
+          "name": "To the park",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://maps.googleapis.com/maps/api/distancematrix/json?key={{API_KEY}}&origins={{POSTMAN}}&destinations={{BUTTERFLY_PARK}}&mode=driving&units=metric&departure_time=now&traffic_model=pessimistic",
+              "protocol": "https",
+              "host": [
+                "maps",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "maps",
+                "api",
+                "distancematrix",
+                "json"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{API_KEY}}",
+                  "equals": true
+                },
+                {
+                  "key": "origins",
+                  "value": "{{POSTMAN}}",
+                  "equals": true
+                },
+                {
+                  "key": "destinations",
+                  "value": "{{BUTTERFLY_PARK}}",
+                  "equals": true
+                },
+                {
+                  "key": "mode",
+                  "value": "driving",
+                  "equals": true
+                },
+                {
+                  "key": "units",
+                  "value": "metric",
+                  "equals": true
+                },
+                {
+                  "key": "departure_time",
+                  "value": "now",
+                  "equals": true
+                },
+                {
+                  "key": "traffic_model",
+                  "value": "pessimistic",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Alt-Svc",
+              "value": "quic=\":443\"; ma=2592000; v=\"39,38,37,36,35\"",
+              "name": "Alt-Svc",
+              "description": ""
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=30",
+              "name": "Cache-Control",
+              "description": ""
+            },
+            {
+              "key": "Content-Length",
+              "value": "289",
+              "name": "Content-Length",
+              "description": ""
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=UTF-8",
+              "name": "Content-Type",
+              "description": ""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 28 Jun 2017 08:11:51 GMT",
+              "name": "Date",
+              "description": ""
+            },
+            {
+              "key": "Expires",
+              "value": "Wed, 28 Jun 2017 08:12:21 GMT",
+              "name": "Expires",
+              "description": ""
+            },
+            {
+              "key": "Server",
+              "value": "mafe",
+              "name": "Server",
+              "description": ""
+            },
+            {
+              "key": "Vary",
+              "value": "Accept-Language",
+              "name": "Vary",
+              "description": ""
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN",
+              "name": "X-Frame-Options",
+              "description": ""
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1; mode=block",
+              "name": "X-XSS-Protection",
+              "description": ""
+            }
+          ],
+          "cookie": [],
+          "responseTime": null,
+          "body": "{\n   \"destination_addresses\" : [ \"Zoo Road, Bengaluru, Karnataka 560083, India\" ],\n   \"origin_addresses\" : [\n      \"Kadiranna Palya Circle, Kadiranapalya, Sarvagnanagar, Bengaluru, Karnataka 560008, India\"\n   ],\n   \"rows\" : [\n      {\n         \"elements\" : [\n            {\n               \"distance\" : {\n                  \"text\" : \"25.0 km\",\n                  \"value\" : 25000\n               },\n               \"duration\" : {\n                  \"text\" : \"1 hour 13 mins\",\n                  \"value\" : 4396\n               },\n               \"duration_in_traffic\" : {\n                  \"text\" : \"1 hour 43 mins\",\n                  \"value\" : 6163\n               },\n               \"status\" : \"OK\"\n            }\n         ]\n      }\n   ],\n   \"status\" : \"OK\"\n}\n"
+        }
+      ]
     }
   ]
 }
